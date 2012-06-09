@@ -7,6 +7,10 @@
 "   sudo port install p5-app-ack
 
 let g:ackprg="ack\\ -H\\ --nocolor\\ --nogroup"
+if exists("g:ackargs")
+    let g:ackprg=g:ackprg . "\\ " . g:ackargs
+endif
+
 
 function! Ack(args)
     let grepprg_bak=&grepprg
