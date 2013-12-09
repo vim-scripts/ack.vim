@@ -6,14 +6,18 @@
 " With MacPorts:
 "   sudo port install p5-app-ack
 
-let g:ackprg="ack\\ -H\\ --nocolor\\ --nogroup"
+let g:ackprg="ack\\ -H\\ --nocolor\\ --nogroup\\ --column\\ "
+let g:ackgrpformat="%f:%l:%c:%m"
 
 function! Ack(args)
     let grepprg_bak=&grepprg
+	let grepformat_bak=&grepformat
     exec "set grepprg=" . g:ackprg
+	exec "set grepformat=" . g:ackgrpformat
     execute "silent! grep " . a:args
     botright copen
     let &grepprg=grepprg_bak
+	let &grepformat=grepformat_bak
     exec "redraw!"
 endfunction
 
